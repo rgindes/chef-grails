@@ -1,4 +1,4 @@
-static-deployment Cookbook
+Grails Cookbook
 ==========================
 This cookbook installs Grails and sets JAVA_HOME and GRAILS_HOME.
 
