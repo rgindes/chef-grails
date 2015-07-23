@@ -14,6 +14,10 @@ describe 'grails::default' do
   		source: 'https://github.com/grails/grails-core/releases/download/v3.0.3/grails-3.0.3.zip')
   end
 
+  it 'installs unzip' do
+    expect(chef_run).to install_yum_package('yum')
+  end
+
   it 'unzips grails' do
   	expect(chef_run).to run_execute('unpack grails').with(
   		command: 'unzip grails.zip')
