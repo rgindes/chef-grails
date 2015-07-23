@@ -11,7 +11,7 @@ describe 'grails::default' do
 
   it 'downloads grails' do
   	expect(chef_run).to create_remote_file('/opt/grails.zip').with(
-  		url: node['grails']['install_url'])
+  		source: 'https://github.com/grails/grails-core/releases/download/v3.0.3/grails-3.0.3.zip')
   end
 
   it 'unzips grails' do

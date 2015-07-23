@@ -5,6 +5,9 @@ remote_file "#{node['grails']['grails_home']}/grails.zip" do
   source node['grails']['install_url']
 end
 
+yum_package 'unzip' do
+end
+
 execute 'unpack grails' do
   cwd node['grails']['grails_home']
   command 'unzip grails.zip'
