@@ -9,18 +9,10 @@ describe 'grails::default' do
     end.converge(described_recipe)
   end
 
-  it 'downloads grails' do
-  	expect(chef_run).to create_remote_file('/opt/grails.zip').with(
-  		source: 'https://github.com/grails/grails-core/releases/download/v3.0.3/grails-3.0.3.zip')
-  end
-
-  it 'installs unzip' do
-    expect(chef_run).to install_yum_package('unzip')
-  end
-
-  it 'unzips grails' do
-  	expect(chef_run).to run_execute('unpack grails').with(
-  		command: 'unzip grails.zip')
+  it 'uses ark to download and unpack grails' do
+    expect(chef_run).to put_ark('grails').with(
+      path: "#{node['grails']['grails_home']}/grails.zip"
+      url: node['grails']['install_url'])
   end
 
   it 'sets path and home environment variables with bash' do
