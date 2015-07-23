@@ -1,5 +1,5 @@
 #!/bin/bash
 
-export GRAILS_HOME=/opt/grails
-export JAVA_HOME=/usr
+export GRAILS_HOME=<% node['grails']['grails_home'] %>/grails
+export JAVA_HOME=<% node['grails']['java_home'] %>
 export PATH=$PATH:$GRAILS_HOME/bin

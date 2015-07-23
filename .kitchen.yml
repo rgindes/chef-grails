@@ -18,73 +18,16 @@ suites:
   - name: default
     run_list:
       - recipe[yum-gd]
-      - recipe[build-essential]
-      - recipe[test-helper::default]
-      - recipe[python::default]
-      - recipe[python-deployment::default]
+      - recipe[java]
+      - recipe[grails]
     attributes:
-      python-deployment:
-        application:
-          name: appserv-feeds
-          settings: appserv_feeds.settings
-          dependencies:
-            - libmemcached-devel
-          version: latest
-          framework: django
-          repository: http://pypi.awsdev.usatoday.com
-        process-application: true
-      python:
-        version: 2.7.9-1.el6.gd
-        install_method: custom-package
-  - name: uwsgi
-    run_list:
-      - recipe[yum-gd]
-      - recipe[build-essential]
-      - recipe[test-helper::default]
-      - recipe[python::default]
-      - recipe[uwsgi::default]
-      - recipe[nginx::default]
-      - recipe[python-deployment::default]
-      - recipe[uwsgi::init]
-    attributes:
-      python-deployment:
-        application:
-          name: appserv-feeds
-          settings: appserv_feeds.settings
-          dependencies:
-            - libmemcached-devel
-          version: latest
-          framework: django
-          repository: http://pypi.awsdev.usatoday.com
-          config_location: remote
-        uwsgi-application: true
-      python:
-        version: 2.7.9-1.el6.gd
-        install_method: custom-package
-  - name: scalr
-    run_list:
-      - recipe[yum-gd]
-      - recipe[build-essential]
-      - recipe[test-helper::default]
-      - recipe[python::default]
-      - recipe[uwsgi::default]
-      - recipe[nginx::default]
-      - recipe[python-deployment::default]
-      - recipe[uwsgi::init]
-    attributes:
-      scalr:
-        check-command: "echo scalr"
-      python-deployment:
-        application:
-          name: appserv-feeds
-          settings: appserv_feeds.settings
-          dependencies:
-            - libmemcached-devel
-          version: latest
-          framework: django
-          repository: http://pypi.awsdev.usatoday.com
-          config_location: remote
-        uwsgi-application: true
-      python:
-        version: 2.7.9-1.el6.gd
-        install_method: custom-package
+      tomcat:
+        base_version: 7
+        user: tomcat
+        group: tomcat
+        java_options: -server -Xms2048m -Xmx2048m -XX:PermSize=512m -XX:MaxPermSize=1024M -Djava.awt.headless=true -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=9005 -DJENKINS_HOME=/.jenkins -Dmail.smtp.starttls.enable=true -Duser.timezone=GMT-5
+      java:
+        jdk_version: 7
+        install_flavor: oracle
+        oracle:
+          accept_oracle_download_terms: true

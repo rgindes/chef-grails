@@ -4,7 +4,7 @@ This cookbook installs Grails and sets JAVA_HOME and GRAILS_HOME.
 
 Requirements
 ------------
-This cookbook requires an installation of 'ark' and 'java'.
+This cookbook requires an installation of 'yum-gd' and 'java'.
 
 Attributes
 ----------

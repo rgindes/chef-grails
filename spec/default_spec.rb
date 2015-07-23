@@ -10,13 +10,13 @@ describe 'grails::default' do
   end
 
   it 'downloads grails' do
-  	expect(chef_run).to create_remote_file('/opt/grails-3.0.3.zip').with(
+  	expect(chef_run).to create_remote_file('/opt/grails.zip').with(
   		url: node['grails']['install_url'])
   end
 
   it 'unzips grails' do
   	expect(chef_run).to run_execute('unpack grails').with(
-  		command: 'unzip grails-3.0.3.zip')
+  		command: 'unzip grails.zip')
   end
 
   it 'sets path and home environment variables with bash' do
