@@ -15,7 +15,7 @@ describe 'grails::default' do
   end
 
   it 'installs unzip' do
-    expect(chef_run).to install_yum_package('yum')
+    expect(chef_run).to install_yum_package('unzip')
   end
 
   it 'unzips grails' do
