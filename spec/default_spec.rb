@@ -10,9 +10,9 @@ describe 'grails::default' do
   end
 
   it 'uses ark to download and unpack grails' do
-    expect(chef_run).to put_ark('grails').with(
-      path: "#{node['grails']['grails_home']}/grails.zip"
-      url: node['grails']['install_url'])
+    expect(chef_run).to install_ark('grails').with(
+      path: "/opt/grails.zip",
+      url: "https://github.com/grails/grails-core/releases/download/v3.0.3/grails-3.0.3.zip")
   end
 
   it 'sets path and home environment variables with bash' do
