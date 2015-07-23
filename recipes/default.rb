@@ -1,16 +1,10 @@
 include_recipe 'yum-gd'
 include_recipe 'java'
+include_recipe 'ark'
 
-remote_file "#{node['grails']['grails_home']}/grails.zip" do
-  source node['grails']['install_url']
-end
-
-yum_package 'unzip' do
-end
-
-execute 'unpack grails' do
-  cwd node['grails']['grails_home']
-  command 'unzip grails.zip'
+ark 'grails' do 
+  path "#{node['grails']['grails_home']}/grails.zip"
+  url node['grails']['install_url']
 end
 
 bash 'set GRAILS_HOME and JAVA_HOME' do
@@ -22,5 +16,5 @@ bash 'set GRAILS_HOME and JAVA_HOME' do
 end
 
 template '/etc/profile.d/grails_java_home.sh' do
-	source 'grails_java_home.sh'
+	source 'grails_java_home.sh.erb'
 end
