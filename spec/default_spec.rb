@@ -18,4 +18,12 @@ describe 'grails::default' do
   	expect(chef_run).to run_execute('unpack grails').with(
   		command: 'unzip grails-3.0.3.zip')
   end
+
+  it 'sets path and home environment variables with bash' do
+    expect(chef_run).to run_bash('set GRAILS_HOME and JAVA_HOME')
+  end
+
+  it 'drops profile.d template to re-set environment variables' do
+    expect(chef_run).to create_template('/etc/profile.d/grails_java_home.sh')
+  end
 end
